@@ -7,19 +7,21 @@
 import React, { useState, useEffect }  from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components/macro';
+import { useInjectReducer } from 'utils/redux-injectors';
 
-import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
-import { reducer, sliceKey } from './slice';
+import { reducer, sliceKey, stopWatchActions } from './slice';
+import { settingsActions } from 'app/containers/Settings/slice';
 import { selectStopWatch } from './selectors';
-import { stopWatchSaga } from './saga';
 import {  Button } from "app/components/Button";
 import { TypePredicateKind } from 'typescript';
+//Action Slice from Tracker
+import { trackerActions } from 'app/containers/Tracker/slice';
+import { settings } from 'cluster';
 
 interface Props {}
 
 export function StopWatch(props: Props) {
   useInjectReducer({ key: sliceKey, reducer: reducer });
-  useInjectSaga({ key: sliceKey, saga: stopWatchSaga });
 
   const [stopWatchState, setStopWatchState] = useState('');
   const [seconds, setSeconds] = useState(0);
@@ -54,11 +56,13 @@ export function StopWatch(props: Props) {
   const stopTimer = (e) => {
     e.preventDefault();
     setIsActive(false);
+    dispatch(stopWatchActions.selectTime(seconds));
     setStopWatchState(e.target.value)
 
   };
   const logTimer = (e) => {
     e.preventDefault();
+    dispatch(trackerActions.logExercise());
     setStopWatchState(e.target.value)
 
   };
@@ -66,7 +70,9 @@ export function StopWatch(props: Props) {
     e.preventDefault();
     setSeconds(0);
     setIsActive(false);
-    setStopWatchState(e.target.value)
+    dispatch(settingsActions.reset());
+    dispatch(stopWatchActions.reset());
+    setStopWatchState(e.target.value);
 
   };
 
@@ -75,16 +81,16 @@ export function StopWatch(props: Props) {
   const renderSwitch = (key) => {
     switch (key) {
       case "start":
-       return  <Button value="stop" onClick={stopTimer} >Stop</Button>
+       return  <Button  stop value="stop" onClick={stopTimer} >Stop</Button>
         break;
       case "stop":
-       return  <Button value="log" onClick={logTimer}>Log</Button>
+       return  <Button log value="log" onClick={logTimer}>Log</Button>
         break;
       case "log":
         return <p>{seconds} has been Logged on user </p>
         break;
         default:
-         return <Button value="start" onClick={startTimer}>Start</Button>
+         return <Button start value="start" onClick={startTimer}>Start</Button>
           break;
     }
   };
@@ -95,10 +101,12 @@ export function StopWatch(props: Props) {
       <Div>{seconds}</Div>
       {renderSwitch(stopWatchState)}
       <br />
-      <Button value="" onClick={resetTimer}>Reset</Button>
+      <Button reset value="" onClick={resetTimer}>Reset</Button>
     </>
   );
 }
 
 const Div = styled.div`
+font-size:3em;
+font-family: 'Orbitron', sans-serif;
 text-align:center;`;

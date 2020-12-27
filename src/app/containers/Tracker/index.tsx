@@ -28,13 +28,15 @@ export function Tracker(props: Props) {
 
   return (
     <>
-      <Div>Tracker</Div>
+    <Div>
       <Settings />
       <StopWatch />
+      </Div>
     </>
   );
 }
 
 const Div = styled.div`
+margin-top:25px;
 text-align:center;
 `;

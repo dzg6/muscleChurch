@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
-import  MCLogo  from './assets/musclechurch-white.png';
+import  MCLogo  from './assets/musclechurch-clear.png';
 import { Tracker } from '../Tracker/Loadable';
 import styled from 'styled-components/macro';
 
@@ -23,9 +23,11 @@ const Div = styled.div`
     display: flex;
     height: 100%;
     flex-direction: column;
-    width: 500px;
+    max-width: 500px;
     margin: auto;
-    margin-top: 30px;
+    padding-top: 30px;
+    background-color:#363a4a;
+    color:white;
 
 `;
 const Img = styled.img`
