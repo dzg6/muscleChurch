@@ -1,6 +1,7 @@
 import { TrackerState } from 'app/containers/Tracker/types';
 import { SettingsState } from 'app/containers/Settings/types';
 import { StopWatchState } from 'app/containers/StopWatch/types';
+import { LogsState } from 'app/containers/Logs/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /* 
@@ -11,5 +12,6 @@ export interface RootState {
   tracker?: TrackerState;
   settings?: SettingsState;
   stopWatch?: StopWatchState;
+  logs?:LogsState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }

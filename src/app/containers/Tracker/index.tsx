@@ -14,6 +14,7 @@ import { selectTracker } from './selectors';
 import { trackerSaga } from './saga';
 import { Settings } from '../Settings/Loadable';
 import { StopWatch } from '../StopWatch/Loadable';
+import { Logs } from '../Logs/Loadable';
 
 interface Props {}
 
@@ -28,15 +29,16 @@ export function Tracker(props: Props) {
 
   return (
     <>
-    <Div>
-      <Settings />
-      <StopWatch />
+      <Div>
+        <Settings />
+        <StopWatch />
+        <Logs />
       </Div>
     </>
   );
 }
 
 const Div = styled.div`
-margin-top:25px;
-text-align:center;
+  margin-top: 25px;
+  text-align: center;
 `;
