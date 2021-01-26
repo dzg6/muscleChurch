@@ -4,14 +4,29 @@ import { selectSettings } from '../Settings/selectors';
 import { selectStopWatch } from '../StopWatch/selectors';
 import { selectTracker } from './selectors';
 import { trackerActions } from './slice';
+
+
+
+import Amplify from "@aws-amplify/core";
 import { DataStore } from '@aws-amplify/datastore';
 import { Workout } from 'models';
 
+import awsconfig from "aws-exports";
+Amplify.configure(awsconfig);
+
 export function* doSomething() {
+
+
+
+
   const settings: { player; exercise; weight; resistanceBand } = yield select(
     selectSettings,
   );
+
   const time: { time } = yield select(selectStopWatch);
+
+
+
   try {
     yield DataStore.save(
       new Workout({
