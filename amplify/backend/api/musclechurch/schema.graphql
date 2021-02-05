@@ -1,9 +1,19 @@
 type Workout @model {
   id: ID!
-  player: String!
-  date: String!
-  exercise: String
+  member: String!
+  exercise: String!
   weight: String
   resistance: String
-  time: String
+  reps: String
+  time: String!
+}
+
+type Exercise @model {
+  id: ID!
+  exercise: String!
+}
+
+type Member @model {
+  id: ID!
+  member: String!
 }

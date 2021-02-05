@@ -12,7 +12,6 @@ const logsSlice = createSlice({
   initialState,
   reducers: {
     Playerlogs(state, action: PayloadAction<any>) {
-      console.log(action.payload);
       state.test = action.payload;
     },
     fetchLogs() {

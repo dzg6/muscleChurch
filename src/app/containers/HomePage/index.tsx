@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
-import  MCLogo  from './assets/musclechurch-clear.png';
-import { Tracker } from '../Tracker/Loadable';
 import styled from 'styled-components/macro';
+import { Link } from 'app/components/Link';
+
 
 export function HomePage() {
   return (
@@ -12,8 +12,8 @@ export function HomePage() {
         <meta name="description" content="A Boilerplate application homepage" />
       </Helmet>
       <Div>
-      <Img src={MCLogo}  width="250px" />
-      <Tracker />
+      <Link to="/Tracker">Tracker </Link>
+      <Link to="/Settings">Settings </Link>
       </Div>
     </>
   );
@@ -21,7 +21,7 @@ export function HomePage() {
 
 const Div = styled.div`
     display: flex;
-    height: 100%;
+    height:100%;
     flex-direction: column;
     max-width: 500px;
     margin: auto;

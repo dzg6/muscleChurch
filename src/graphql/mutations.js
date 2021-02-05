@@ -8,11 +8,11 @@ export const createWorkout = /* GraphQL */ `
   ) {
     createWorkout(input: $input, condition: $condition) {
       id
-      player
-      date
+      member
       exercise
       weight
       resistance
+      reps
       time
       createdAt
       updatedAt
@@ -26,11 +26,11 @@ export const updateWorkout = /* GraphQL */ `
   ) {
     updateWorkout(input: $input, condition: $condition) {
       id
-      player
-      date
+      member
       exercise
       weight
       resistance
+      reps
       time
       createdAt
       updatedAt
@@ -44,12 +44,90 @@ export const deleteWorkout = /* GraphQL */ `
   ) {
     deleteWorkout(input: $input, condition: $condition) {
       id
-      player
-      date
+      member
       exercise
       weight
       resistance
+      reps
       time
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createExercise = /* GraphQL */ `
+  mutation CreateExercise(
+    $input: CreateExerciseInput!
+    $condition: ModelExerciseConditionInput
+  ) {
+    createExercise(input: $input, condition: $condition) {
+      id
+      exercise
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateExercise = /* GraphQL */ `
+  mutation UpdateExercise(
+    $input: UpdateExerciseInput!
+    $condition: ModelExerciseConditionInput
+  ) {
+    updateExercise(input: $input, condition: $condition) {
+      id
+      exercise
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteExercise = /* GraphQL */ `
+  mutation DeleteExercise(
+    $input: DeleteExerciseInput!
+    $condition: ModelExerciseConditionInput
+  ) {
+    deleteExercise(input: $input, condition: $condition) {
+      id
+      exercise
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createMember = /* GraphQL */ `
+  mutation CreateMember(
+    $input: CreateMemberInput!
+    $condition: ModelMemberConditionInput
+  ) {
+    createMember(input: $input, condition: $condition) {
+      id
+      member
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateMember = /* GraphQL */ `
+  mutation UpdateMember(
+    $input: UpdateMemberInput!
+    $condition: ModelMemberConditionInput
+  ) {
+    updateMember(input: $input, condition: $condition) {
+      id
+      member
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteMember = /* GraphQL */ `
+  mutation DeleteMember(
+    $input: DeleteMemberInput!
+    $condition: ModelMemberConditionInput
+  ) {
+    deleteMember(input: $input, condition: $condition) {
+      id
+      member
       createdAt
       updatedAt
     }

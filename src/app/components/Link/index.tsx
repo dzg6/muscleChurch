@@ -3,13 +3,19 @@
  * Link
  *
  */
-import * as React from 'react';
 import styled from 'styled-components/macro';
+import { Link as RouterLink } from 'react-router-dom';
 
-interface Props {}
+export const Link:any = styled(RouterLink)`
+  text-decoration: none;
+  color:white;
 
-export function Link(props: Props) {
-  return <Div></Div>;
-}
+  &:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+  }
 
-const Div = styled.div``;
+  &:active {
+    opacity: 0.4;
+  }
+`;

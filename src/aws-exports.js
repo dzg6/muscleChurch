@@ -4,7 +4,7 @@ const awsmobile =  {
     "aws_appsync_graphqlEndpoint": "https://cvtmjaz5pfhmdhmjhzfekjlzxe.appsync-api.us-east-1.amazonaws.com/graphql",
     "aws_appsync_region": "us-east-1",
     "aws_appsync_authenticationType": "API_KEY",
-    "aws_appsync_apiKey": "da2-r7thwv2konerboaao2cs7sh554",
+    "aws_appsync_apiKey": "da2-qj3gs3rg5ve73dsvcgqt6h3x64",
 };
 
 export default awsmobile;

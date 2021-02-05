@@ -11,10 +11,16 @@ import { Helmet } from 'react-helmet-async';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 
 import { GlobalStyle } from 'styles/global-styles';
+import styled from 'styled-components/macro';
 
+import { Header } from 'app/containers/Header/Loadable';
 import { HomePage } from './containers/HomePage/Loadable';
+import { Tracker } from './containers/Tracker/Loadable';
+import { Settings } from './containers/Settings/Loadable';
 import { NotFoundPage } from './components/NotFoundPage/Loadable';
 import { useTranslation } from 'react-i18next';
+
+
 
 export function App() {
   const { i18n } = useTranslation();
@@ -27,12 +33,27 @@ export function App() {
       >
         <meta name="description" content="A React Boilerplate application" />
       </Helmet>
-
+      <Div>
+      <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
+        <Route exact path="/Tracker" component={Tracker} />
+        <Route exact path="/Settings" component={Settings} />
         <Route component={NotFoundPage} />
       </Switch>
+      </Div>
       <GlobalStyle />
     </BrowserRouter>
   );
 }
+const Div = styled.div`
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    max-width: 500px;
+    margin: auto;
+    padding-top: 30px;
+    background-color:#363a4a;
+    color:white;
+
+`;

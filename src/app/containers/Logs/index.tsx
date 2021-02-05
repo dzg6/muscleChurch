@@ -30,7 +30,6 @@ export function Logs(props: Props) {
 
   const stopTimer = e => {
     dispatch(logsActions.fetchLogs());
-    console.log(logs.test);
   };
 
   return (
@@ -43,11 +42,11 @@ export function Logs(props: Props) {
         <Button stop value="stop" onClick={stopTimer}>
           Logs
         </Button>
-        {/* <LogViewer test={logs.test} /> */}
+        <LogViewer test={logs.test} />
 
-        {logs.test.map((user, i) => (
+        {/* {logs.test.map((user, i) => (
           <LogViewer test={user} />
-        ))}
+        ))} */}
       </Div>
     </>
   );

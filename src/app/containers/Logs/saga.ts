@@ -17,7 +17,6 @@ export function* doSomething() {
 // Simple query
 const getWorkOuts = yield API.graphql({ query: queries.listWorkouts });
   //const workouts = yield DataStore.query(Workout);
-  console.log(getWorkOuts.data.listWorkouts.items);
     
     
     yield put(logsActions.Playerlogs(getWorkOuts.data.listWorkouts.items));
