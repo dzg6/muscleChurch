@@ -4,16 +4,16 @@ import { Store } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
 import { configureAppStore } from 'store/configureStore';
-import { Settings } from '..';
+import { Options } from '..';
 
 const renderComponent = (store: Store) =>
   render(
     <Provider store={store}>
-      <Settings />
+      <Options />
     </Provider>,
   );
 
-describe('<Settings />', () => {
+describe('<Options />', () => {
   let store: ReturnType<typeof configureAppStore>;
 
   beforeEach(() => {
