@@ -11,6 +11,9 @@ import styled from 'styled-components/macro';
 import { useInjectReducer } from 'utils/redux-injectors';
 import { reducer, sliceKey, settingsActions } from './slice';
 
+import { EditMember } from 'app/containers/EditMember';
+import { EditExercise } from 'app/containers/EditExercise';
+
 import { selectSettings } from './selectors';
 import { Button } from 'app/components/Button';
 import { Input } from 'app/components/Input';
@@ -20,7 +23,7 @@ interface Props {}
 
 export function Settings(props: Props) {
   useInjectReducer({ key: sliceKey, reducer: reducer });
-  const [weight, setWeight] = useState('');
+
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const settings = useSelector(selectSettings);
@@ -28,11 +31,13 @@ export function Settings(props: Props) {
   const dispatch = useDispatch();
 
 
+
+
   return (
     <>
     <Div>
-    <p>Add Member / Edit Members</p>
-    <p>Add Exerecise / Edit Exercises</p>
+      <EditMember />
+      <EditExercise />
     <p>Add Workout / Edit Workouts</p>
     </Div>
     </>

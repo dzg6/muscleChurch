@@ -6,7 +6,7 @@ import { Workout } from 'models';
 import { API } from 'aws-amplify';
 import * as queries from 'graphql/queries';
 
-import awsconfig from 'aws-exports';
+import awsconfig from 'aws-exports.js';
 Amplify.configure(awsconfig);
 
 export function* doSomething() {

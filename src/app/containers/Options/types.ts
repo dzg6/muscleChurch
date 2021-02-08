@@ -1,9 +1,11 @@
 /* --- STATE --- */
-export interface SettingsState {
-    player:String,
+export interface OptionsState {
+    member:String,
     exercise:String,
     weight:string,
-    resistanceBand:Number
+    resistance:String,
+    time:String,
+    reps:String
 }
 
-export type ContainerState = SettingsState;
+export type ContainerState = OptionsState;

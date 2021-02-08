@@ -12,9 +12,11 @@ import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { reducer, sliceKey } from './slice';
 import { selectTracker } from './selectors';
 import { trackerSaga } from './saga';
-import { Settings } from '../Settings/Loadable';
+import { Options } from '../Options/Loadable';
 import { StopWatch } from '../StopWatch/Loadable';
 import { Logs } from '../Logs/Loadable';
+
+
 
 interface Props {}
 
@@ -26,13 +28,14 @@ export function Tracker(props: Props) {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const tracker = useSelector(selectTracker);
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const dispatch = useDispatch();
 
   return (
     <>
       <Div>
-        <Settings />
+        <Options />
         <StopWatch />
         <Logs />
       </Div>

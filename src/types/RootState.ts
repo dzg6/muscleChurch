@@ -2,6 +2,11 @@ import { TrackerState } from 'app/containers/Tracker/types';
 import { SettingsState } from 'app/containers/Settings/types';
 import { StopWatchState } from 'app/containers/StopWatch/types';
 import { LogsState } from 'app/containers/Logs/types';
+import { OptionsState } from 'app/containers/Options/types';
+import { EditMemberState } from 'app/containers/EditMember/types';
+import { EditExerciseState } from 'app/containers/EditExercise/types';
+import { EditResistanceState } from 'app/containers/EditResistance/types';
+import { HomePageState } from 'app/containers/HomePage/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /* 
@@ -12,6 +17,11 @@ export interface RootState {
   tracker?: TrackerState;
   settings?: SettingsState;
   stopWatch?: StopWatchState;
+  options?:OptionsState;
   logs?:LogsState;
+  editMember?:EditMemberState;
+  editExercise?:EditExerciseState;
+  editResistance?:EditResistanceState;
+  homePage?:HomePageState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }

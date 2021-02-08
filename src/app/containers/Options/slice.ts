@@ -4,18 +4,20 @@ import { ContainerState } from './types';
 
 // The initial state of the Settings container
 export const initialState: ContainerState = {
-  player:'Dan Smith',
-  exercise:'Chest Press',
+  member:'',
+  exercise:'',
   weight:'',
-  resistanceBand:0
+  resistance:'',
+  reps:'',
+  time:''
 };
 
-const settingsSlice = createSlice({
-  name: 'settings',
+const optionsSlice = createSlice({
+  name: 'options',
   initialState,
   reducers: {
-    selectPlayer(state, action: PayloadAction<any>) {
-      state.player = action.payload;
+    selectMember(state, action: PayloadAction<any>) {
+      state.member = action.payload;
     },
     selectExercise(state, action: PayloadAction<any>) {
       state.exercise = action.payload;
@@ -24,17 +26,19 @@ const settingsSlice = createSlice({
       state.weight = action.payload;
     },
     selectResistance(state, action: PayloadAction<any>) {
-      state.resistanceBand = action.payload;
+      state.resistance = action.payload;
+    },
+    selectReps(state, action: PayloadAction<any>) {
+      state.reps = action.payload;
     },
     reset(state) {
-      state.resistanceBand = 0;
       state.weight = '';
     },
   },
 });
 
 export const {
-  actions: settingsActions,
+  actions: optionsActions,
   reducer,
   name: sliceKey,
-} = settingsSlice;
+} = optionsSlice;

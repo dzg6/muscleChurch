@@ -43,6 +43,8 @@ export const getExercise = /* GraphQL */ `
     getExercise(id: $id) {
       id
       exercise
+      hasResistance
+      hasReps
       createdAt
       updatedAt
     }
@@ -58,6 +60,8 @@ export const listExercises = /* GraphQL */ `
       items {
         id
         exercise
+        hasResistance
+        hasReps
         createdAt
         updatedAt
       }

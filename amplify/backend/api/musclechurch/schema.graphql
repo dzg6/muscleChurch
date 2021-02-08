@@ -11,6 +11,8 @@ type Workout @model {
 type Exercise @model {
   id: ID!
   exercise: String!
+  hasResistance: Boolean
+  hasReps: Boolean
 }
 
 type Member @model {

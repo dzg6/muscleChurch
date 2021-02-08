@@ -10,132 +10,112 @@ import styled from 'styled-components/macro';
 
 import { useInjectReducer } from 'utils/redux-injectors';
 import { trackerActions } from 'app/containers/Tracker/slice';
-import { reducer, sliceKey, settingsActions } from './slice';
+import { reducer, sliceKey, optionsActions } from './slice';
 
-import { selectSettings } from './selectors';
+import { selectOptions } from './selectors';
 import { Button } from 'app/components/Button';
 import { Input } from 'app/components/Input';
 import { Select} from 'app/components/Select';
+import { Option} from 'app/components/Option';
+
+import { selectHomePage } from 'app/containers/HomePage/selectors';
+
 
 interface Props {}
 
-export function Settings(props: Props) {
+export function Options(props: Props) {
   useInjectReducer({ key: sliceKey, reducer: reducer });
   const [weight, setWeight] = useState('');
+  const [hasResistance, setHasResistance] = useState(false);
+  const [hasReps, setHasReps] = useState(false);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const settings = useSelector(selectSettings);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const options = useSelector(selectOptions);
+  const homepage = useSelector(selectHomePage);
+  
+
+
   const dispatch = useDispatch();
 
-  const playerSelect = e => {
-    dispatch(settingsActions.selectPlayer(e.target.value));
+  const memberSelect = e => {
+    console.log(e.target.value)
+    dispatch(optionsActions.selectMember(e.target.value));
   };
 
   const exerciseSelect = e => {
-    dispatch(settingsActions.selectExercise(e.target.value));
+     setHasReps(homepage.exercises[e.target.value].hasReps);
+     setHasResistance(homepage.exercises[e.target.value].hasResistance);
+    dispatch(optionsActions.selectExercise(homepage.exercises[e.target.value].exercise));
   };
   const weightSelect = e => {
-    dispatch(settingsActions.selectWeight(e.target.value));
-    setWeight(settings.weight);
+    dispatch(optionsActions.selectWeight(e.target.value));
+    setWeight(options.weight);
   };
-  const resistanceChange = e => {
-    dispatch(settingsActions.selectResistance(e.target.value));
+  const resistanceSelect = e => {
+    dispatch(optionsActions.selectResistance(e.target.value));
+  };
+  const repsSelect = e => {
+    dispatch(optionsActions.selectReps(e.target.value));
   };
 
-  const getWeightSwitch = () => {
-    switch (settings.exercise) {
-      case 'Pull Ups':
-        return (
-          <>
-            <Select
-              id="resistance bands"
-              name="resistance band"
-              onChange={resistanceChange}
-            >
-              <option value="Black L2">Black L2</option>
-              <option value="Black L1">Black L1</option>
-              <option value="Orange">Orange</option>
-              <option value="Orange">Green</option>
-            </Select>
-            <Input
-              id="weight"
-              name="weight"
-              onChange={weightSelect}
-              value={settings.weight}
-              placeholder="weight in LBS"
-            />
-          </>
-        );
-      case 'Dips':
-        return (
-          <>
-            <Select
-              id="resistance bands"
-              name="resistance band"
-              onChange={resistanceChange}
-            >
-              <option value="Black L2">Black L2</option>
-              <option value="Black L1">Black L1</option>
-              <option value="Orange">Orange</option>
-              <option value="Orange">Green</option>
-            </Select>
-            <br />
-            <Input
-              id="weight"
-              name="weight"
-              onChange={weightSelect}
-              value={settings.weight}
-              placeholder="weight in LBS"
-            />
-          </>
-        );
-        break;
+  const getResistance = () => {
+    if(hasResistance === true){
+      return (
+      <>
+      <Select
+          id="resistance bands"
+          name="resistance band"
+          onChange={resistanceSelect}
+      >
+          <option value="Black L2">Black L2</option>
+          <option value="Black L1">Black L1</option>
+          <option value="Orange">Orange</option>
+          <option value="Green">Green</option>
+          <option value="Purple">Purple</option>
+      </Select>
+      </>
+      )}};
 
-      default:
-        return (
-          <Input
-            id="weight"
-            name="weight"
-            onChange={weightSelect}
-            value={settings.weight}
-            placeholder="weight in LBS"
-          />
-        );
-        break;
-    }
-  };
+    const getReps = () => {
+    if(hasReps === true){
+      return (
+      <>
+        <Input
+        id="reps"
+        name="reps"
+        onChange={repsSelect}
+        placeholder="total reps"
+      />
+      </>
+      )}};
+
+      useEffect(() => {   
+        dispatch(optionsActions.selectMember(homepage.members[0].member));
+        dispatch(optionsActions.selectExercise(homepage.exercises[0].exercise));
+        setHasReps(homepage.exercises[0].hasReps);
+        setHasResistance(homepage.exercises[0].hasResistance);
+        
+        },[]);
 
   return (
     <>
-      <Select name="Players" id="Player" onChange={playerSelect}>
-        <option value="Dan Smith">Dan Smith</option>
-        <option value="Ryan Smith">Ryan Smith</option>
-        <option value="Evelyn Smith">Evelyn Smith</option>
-        <option value="Patty Smith">Patty Smith</option>
-        <option value="Kramer Knecht">Kramer Knecht</option>
-        <option value="Mark Knecht">Mark Knecht</option>
-        <option value="Genie Knecht">Genie Knecht</option>
-        <option value="Grandma Orene">Grandma Orene</option>
-        <option value="Aunt Sunny">Aunt Sunny</option>
-        <option value="Mark Reynolds">Mark Reynolds</option>
-        <option value="Steve Wills">Steve Wills</option>
-        <option value="Ryan Hayes">Ryan Hayes</option>
-        <option value="TJ Levy">TJ Levy</option>
+      <Select name="Players" id="Player" onChange={memberSelect}>
+        <Option value={homepage.members} />
       </Select>
 
       <Select name="Exercises" id="Exercise" onChange={exerciseSelect}>
-        <option value="Chest Press">Chest Press</option>
-        <option value="Shoulder Press">Shoulder Press</option>
-        <option value="Leg Press">Leg Press</option>
-        <option value="Pull Ups">Pull Ups</option>
-        <option value="Dips">Dips</option>
-        <option value="Delts">Delts</option>
-        <option value="Horozontial Pulls">Horozontial Pulls</option>
-        <option value="Bicep Curls">Bicep Curls</option>
+        <Option value={homepage.exercises} />
       </Select>
       <br />
-      {getWeightSwitch()}
+      <Input
+            id="weight"
+            name="weight"
+            onChange={weightSelect}
+            value={options.weight}
+            placeholder="weight in LBS"
+          />
+      <br />
+      {getResistance()}
+      {getReps()}
     </>
   );
 }

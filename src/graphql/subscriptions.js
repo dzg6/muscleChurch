@@ -51,6 +51,8 @@ export const onCreateExercise = /* GraphQL */ `
     onCreateExercise {
       id
       exercise
+      hasResistance
+      hasReps
       createdAt
       updatedAt
     }
@@ -61,6 +63,8 @@ export const onUpdateExercise = /* GraphQL */ `
     onUpdateExercise {
       id
       exercise
+      hasResistance
+      hasReps
       createdAt
       updatedAt
     }
@@ -71,6 +75,8 @@ export const onDeleteExercise = /* GraphQL */ `
     onDeleteExercise {
       id
       exercise
+      hasResistance
+      hasReps
       createdAt
       updatedAt
     }

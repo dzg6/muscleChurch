@@ -63,6 +63,8 @@ export const createExercise = /* GraphQL */ `
     createExercise(input: $input, condition: $condition) {
       id
       exercise
+      hasResistance
+      hasReps
       createdAt
       updatedAt
     }
@@ -76,6 +78,8 @@ export const updateExercise = /* GraphQL */ `
     updateExercise(input: $input, condition: $condition) {
       id
       exercise
+      hasResistance
+      hasReps
       createdAt
       updatedAt
     }
@@ -89,6 +93,8 @@ export const deleteExercise = /* GraphQL */ `
     deleteExercise(input: $input, condition: $condition) {
       id
       exercise
+      hasResistance
+      hasReps
       createdAt
       updatedAt
     }
