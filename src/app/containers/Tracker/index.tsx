@@ -37,7 +37,6 @@ export function Tracker(props: Props) {
       <Div>
         <Options />
         <StopWatch />
-        <Logs />
       </Div>
     </>
   );

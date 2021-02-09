@@ -15,11 +15,10 @@ import { reducer, sliceKey, optionsActions } from './slice';
 import { selectOptions } from './selectors';
 import { Button } from 'app/components/Button';
 import { Input } from 'app/components/Input';
-import { Select} from 'app/components/Select';
-import { Option} from 'app/components/Option';
+import { Select } from 'app/components/Select';
+import { Option } from 'app/components/Option';
 
 import { selectHomePage } from 'app/containers/HomePage/selectors';
-
 
 interface Props {}
 
@@ -31,20 +30,22 @@ export function Options(props: Props) {
 
   const options = useSelector(selectOptions);
   const homepage = useSelector(selectHomePage);
-  
-
 
   const dispatch = useDispatch();
 
   const memberSelect = e => {
-    console.log(e.target.value)
+    console.log(e.target.value);
     dispatch(optionsActions.selectMember(e.target.value));
   };
 
   const exerciseSelect = e => {
-     setHasReps(homepage.exercises[e.target.value].hasReps);
-     setHasResistance(homepage.exercises[e.target.value].hasResistance);
-    dispatch(optionsActions.selectExercise(homepage.exercises[e.target.value].exercise));
+    setHasReps(homepage.exercises[e.target.value].hasReps);
+    setHasResistance(homepage.exercises[e.target.value].hasResistance);
+    dispatch(
+      optionsActions.selectExercise(
+        homepage.exercises[e.target.value].exercise,
+      ),
+    );
   };
   const weightSelect = e => {
     dispatch(optionsActions.selectWeight(e.target.value));
@@ -58,43 +59,46 @@ export function Options(props: Props) {
   };
 
   const getResistance = () => {
-    if(hasResistance === true){
+    if (hasResistance === true) {
       return (
-      <>
-      <Select
-          id="resistance bands"
-          name="resistance band"
-          onChange={resistanceSelect}
-      >
-          <option value="Black L2">Black L2</option>
-          <option value="Black L1">Black L1</option>
-          <option value="Orange">Orange</option>
-          <option value="Green">Green</option>
-          <option value="Purple">Purple</option>
-      </Select>
-      </>
-      )}};
+        <>
+          <Select
+            id="resistance bands"
+            name="resistance band"
+            onChange={resistanceSelect}
+          >
+            <option value="Black L2">Black L2</option>
+            <option value="Black L1">Black L1</option>
+            <option value="Orange">Orange</option>
+            <option value="Green">Green</option>
+            <option value="Purple">Purple</option>
+          </Select>
+        </>
+      );
+    }
+  };
 
-    const getReps = () => {
-    if(hasReps === true){
+  const getReps = () => {
+    if (hasReps === true) {
       return (
-      <>
-        <Input
-        id="reps"
-        name="reps"
-        onChange={repsSelect}
-        placeholder="total reps"
-      />
-      </>
-      )}};
+        <>
+          <Input
+            id="reps"
+            name="reps"
+            onChange={repsSelect}
+            placeholder="total reps"
+          />
+        </>
+      );
+    }
+  };
 
-      useEffect(() => {   
-        dispatch(optionsActions.selectMember(homepage.members[0].member));
-        dispatch(optionsActions.selectExercise(homepage.exercises[0].exercise));
-        setHasReps(homepage.exercises[0].hasReps);
-        setHasResistance(homepage.exercises[0].hasResistance);
-        
-        },[]);
+  useEffect(() => {
+    dispatch(optionsActions.selectMember(homepage.members[0].member));
+    dispatch(optionsActions.selectExercise(homepage.exercises[0].exercise));
+    setHasReps(homepage.exercises[0].hasReps);
+    setHasResistance(homepage.exercises[0].hasResistance);
+  }, []);
 
   return (
     <>
@@ -107,12 +111,12 @@ export function Options(props: Props) {
       </Select>
       <br />
       <Input
-            id="weight"
-            name="weight"
-            onChange={weightSelect}
-            value={options.weight}
-            placeholder="weight in LBS"
-          />
+        id="weight"
+        name="weight"
+        onChange={weightSelect}
+        value={options.weight}
+        placeholder="weight in LBS"
+      />
       <br />
       {getResistance()}
       {getReps()}

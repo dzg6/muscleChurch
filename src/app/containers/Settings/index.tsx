@@ -13,36 +13,86 @@ import { reducer, sliceKey, settingsActions } from './slice';
 
 import { EditMember } from 'app/containers/EditMember';
 import { EditExercise } from 'app/containers/EditExercise';
+import { EditWorkout } from 'app/containers/EditWorkout';
 
 import { selectSettings } from './selectors';
-import { Button } from 'app/components/Button';
-import { Input } from 'app/components/Input';
-import { Select} from 'app/components/Select';
+import { Link } from 'app/components/Link';
 
 interface Props {}
 
 export function Settings(props: Props) {
   useInjectReducer({ key: sliceKey, reducer: reducer });
 
+  //CLICK STATE - 0 = settings, 1 = members, 2 = exercise, 3 = workouts
+  const [clickState, setClickState] = useState(0);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const settings = useSelector(selectSettings);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const dispatch = useDispatch();
 
+  const onClickBack = e => {
+    setClickState(0);
+  };
+  const onClickMember = e => {
+    setClickState(1);
+  };
+  const onClickExercise = e => {
+    setClickState(2);
+  };
+  const onClickWorkout = e => {
+    setClickState(3);
+  };
 
-
+  const clickStateSwitch = () => {
+    switch (clickState) {
+      case 0:
+        return (
+          <>
+            <Link to="/">Go back to HomePage</Link>
+            <br />
+            <Link onClick={onClickMember}>Edit Members</Link>
+            <br />
+            <Link onClick={onClickExercise}>Edit Exercises</Link>
+            <br />
+            <Link onClick={onClickWorkout}>Edit Workouts</Link>
+            <br />
+          </>
+        );
+        break;
+      case 1:
+        return (
+          <>
+            <Link onClick={onClickBack}>Back</Link>
+            <br />
+            <EditMember />
+          </>
+        );
+        break;
+      case 2:
+        return (
+          <>
+            <Link onClick={onClickBack}>Back</Link>
+            <br />
+            <EditExercise />
+          </>
+        );
+        break;
+      case 3:
+        return (
+          <>
+            <Link onClick={onClickBack}>Back</Link>
+            <br />
+            <EditWorkout />
+          </>
+        );
+        break;
+    }
+  };
 
   return (
     <>
-    <Div>
-      <EditMember />
-      <EditExercise />
-    <p>Add Workout / Edit Workouts</p>
-    </Div>
+      <Div>{clickStateSwitch()}</Div>
     </>
   );
 }
 
-const Div = styled.div`
-`;
+const Div = styled.div``;

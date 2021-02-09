@@ -6,6 +6,7 @@ import { OptionsState } from 'app/containers/Options/types';
 import { EditMemberState } from 'app/containers/EditMember/types';
 import { EditExerciseState } from 'app/containers/EditExercise/types';
 import { EditResistanceState } from 'app/containers/EditResistance/types';
+import { EditWorkoutState } from 'app/containers/EditWorkout/types';
 import { HomePageState } from 'app/containers/HomePage/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
@@ -22,6 +23,7 @@ export interface RootState {
   editMember?:EditMemberState;
   editExercise?:EditExerciseState;
   editResistance?:EditResistanceState;
+  editWorkout?:EditWorkoutState;
   homePage?:HomePageState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }
