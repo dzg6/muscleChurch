@@ -15,19 +15,11 @@ interface Props {
 export function Option(props: Props) {
 
 
-  if (props.value[0].member) {
-    return (
-      <>
-        {props.value.map(function (element) {
-          return <option value={element.member}>{element.member}</option>;
-        })}
-      </>
-    );
-  } else if (props.value[0].exercise) {
+  if (props.value) {
     return (
       <>
         {props.value.map(function (element, index) {
-          return <option value={index}>{element.exercise}</option>;
+          return <option value={index}>{element.name}</option>;
         })}
       </>
     );

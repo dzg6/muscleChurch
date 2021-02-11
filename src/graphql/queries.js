@@ -42,7 +42,7 @@ export const getExercise = /* GraphQL */ `
   query GetExercise($id: ID!) {
     getExercise(id: $id) {
       id
-      exercise
+      name
       hasResistance
       hasReps
       createdAt
@@ -59,7 +59,7 @@ export const listExercises = /* GraphQL */ `
     listExercises(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        exercise
+        name
         hasResistance
         hasReps
         createdAt
@@ -73,7 +73,7 @@ export const getMember = /* GraphQL */ `
   query GetMember($id: ID!) {
     getMember(id: $id) {
       id
-      member
+      name
       createdAt
       updatedAt
     }
@@ -88,7 +88,7 @@ export const listMembers = /* GraphQL */ `
     listMembers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        member
+        name
         createdAt
         updatedAt
       }

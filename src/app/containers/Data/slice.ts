@@ -2,14 +2,14 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { ContainerState } from './types';
 
-// The initial state of the StopWatch container
+// The initial state of the Data container
 export const initialState: ContainerState = {
   members:[],
   exercises:[]
 };
 
-const homePageSlice = createSlice({
-  name: 'homePage',
+const dataSlice = createSlice({
+  name: 'data',
   initialState,
   reducers: {
     getMembers() {
@@ -25,4 +25,4 @@ const homePageSlice = createSlice({
   },
 });
 
-export const { actions: homePageActions, reducer, name: sliceKey } = homePageSlice;
+export const { actions: dataActions, reducer, name: sliceKey } = dataSlice;

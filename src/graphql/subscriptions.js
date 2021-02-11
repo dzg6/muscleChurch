@@ -50,7 +50,7 @@ export const onCreateExercise = /* GraphQL */ `
   subscription OnCreateExercise {
     onCreateExercise {
       id
-      exercise
+      name
       hasResistance
       hasReps
       createdAt
@@ -62,7 +62,7 @@ export const onUpdateExercise = /* GraphQL */ `
   subscription OnUpdateExercise {
     onUpdateExercise {
       id
-      exercise
+      name
       hasResistance
       hasReps
       createdAt
@@ -74,7 +74,7 @@ export const onDeleteExercise = /* GraphQL */ `
   subscription OnDeleteExercise {
     onDeleteExercise {
       id
-      exercise
+      name
       hasResistance
       hasReps
       createdAt
@@ -86,7 +86,7 @@ export const onCreateMember = /* GraphQL */ `
   subscription OnCreateMember {
     onCreateMember {
       id
-      member
+      name
       createdAt
       updatedAt
     }
@@ -96,7 +96,7 @@ export const onUpdateMember = /* GraphQL */ `
   subscription OnUpdateMember {
     onUpdateMember {
       id
-      member
+      name
       createdAt
       updatedAt
     }
@@ -106,7 +106,7 @@ export const onDeleteMember = /* GraphQL */ `
   subscription OnDeleteMember {
     onDeleteMember {
       id
-      member
+      name
       createdAt
       updatedAt
     }

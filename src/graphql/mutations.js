@@ -62,7 +62,7 @@ export const createExercise = /* GraphQL */ `
   ) {
     createExercise(input: $input, condition: $condition) {
       id
-      exercise
+      name
       hasResistance
       hasReps
       createdAt
@@ -77,7 +77,7 @@ export const updateExercise = /* GraphQL */ `
   ) {
     updateExercise(input: $input, condition: $condition) {
       id
-      exercise
+      name
       hasResistance
       hasReps
       createdAt
@@ -92,7 +92,7 @@ export const deleteExercise = /* GraphQL */ `
   ) {
     deleteExercise(input: $input, condition: $condition) {
       id
-      exercise
+      name
       hasResistance
       hasReps
       createdAt
@@ -107,7 +107,7 @@ export const createMember = /* GraphQL */ `
   ) {
     createMember(input: $input, condition: $condition) {
       id
-      member
+      name
       createdAt
       updatedAt
     }
@@ -120,7 +120,7 @@ export const updateMember = /* GraphQL */ `
   ) {
     updateMember(input: $input, condition: $condition) {
       id
-      member
+      name
       createdAt
       updatedAt
     }
@@ -133,7 +133,7 @@ export const deleteMember = /* GraphQL */ `
   ) {
     deleteMember(input: $input, condition: $condition) {
       id
-      member
+      name
       createdAt
       updatedAt
     }

@@ -19,7 +19,7 @@ import { Workout } from 'models';
 import awsconfig from "aws-exports.js";
 Amplify.configure(awsconfig);
 
-export function* doSomething() {
+export function* createWorkout() {
   
   const options: { member; exercise; weight; resistance, reps } = yield select(
     selectOptions,
@@ -65,5 +65,5 @@ export function* doSomething() {
 }
 
 export function* trackerSaga() {
-  yield takeLatest(trackerActions.logExercise.type, doSomething);
+  yield takeLatest(trackerActions.logExercise.type, createWorkout);
 }

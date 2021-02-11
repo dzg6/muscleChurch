@@ -15,10 +15,8 @@ import { editMemberSaga } from './saga';
 
 import { Input } from 'app/components/Input';
 import { EditItem } from 'app/components/EditItem';
-import { Button } from 'app/components/Button';
-import { Link } from 'app/components/Link';
 
-import { selectHomePage } from 'app/containers/HomePage/selectors';
+import { selectData } from 'app/containers/Data/selectors';
 
 interface Props {}
 
@@ -26,43 +24,64 @@ export function EditMember(props: Props) {
   useInjectReducer({ key: sliceKey, reducer: reducer });
   useInjectSaga({ key: sliceKey, saga: editMemberSaga });
   const [addMember, setAddMember] = useState('');
+  const [type, setType] = useState('member');
 
-  const homepage = useSelector(selectHomePage);
-  const editMember = useSelector(selectEditMember);
+  const data = useSelector(selectData);
   const dispatch = useDispatch();
 
   const createMember = e => {
     const payload = {
-      member: addMember,
+      name: addMember,
     };
     dispatch(editMemberActions.createMember(payload));
+    setAddMember("")
   };
 
   const selectMember = e => {
     setAddMember(e.target.value);
   };
-  const testClick = e => {
-    console.log(e.target.value);
+  const updateMemberClick = payload => {
+    if (payload.action === 'update') {
+      dispatch(editMemberActions.updateMember(payload));
+    }
+
+    if (payload.action === 'delete') {
+      dispatch(editMemberActions.deleteMember(payload));
+    }
   };
-  console.log(homepage)
+  console.log(data);
 
   return (
     <>
       <Div>
-        <Input
-          id="create member"
-          name="create member"
-          onChange={selectMember}
-          placeholder=""
-        />
-        <br />
-        <Link onClick={createMember}>Create New Member</Link>
+        <Row>
+          <Column>
+            <Input
+              id="create member"
+              name="create member"
+              value={addMember}
+              onChange={selectMember}
+              placeholder=""
+            />
+          </Column>
+          <Column>
+            <Button onClick={createMember}>Create New Member</Button>
+          </Column>
+        </Row>
         <p>Edit Members</p>
-
-          <EditItem value={homepage.members} onClick={testClick} />
-
+        <EditItem items={data.members} updateFunc={updateMemberClick} />
       </Div>
     </>
   );
 }
 const Div = styled.div``;
+const Row = styled.div`
+  display: flex;
+`;
+const Column = styled.div`
+  flex: 50%;
+`;
+const Button = styled.button`
+  flex: 50%;
+  margin-left: 0.3em;
+`;

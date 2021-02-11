@@ -14,6 +14,7 @@ import { GlobalStyle } from 'styles/global-styles';
 import styled from 'styled-components/macro';
 
 import { Header } from 'app/containers/Header/Loadable';
+import { Data } from './containers/Data/Loadable';
 import { HomePage } from './containers/HomePage/Loadable';
 import { Tracker } from './containers/Tracker/Loadable';
 import { Settings } from './containers/Settings/Loadable';
@@ -35,6 +36,7 @@ export function App() {
       </Helmet>
       <Div>
       <Header />
+      <Data />
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/Tracker" component={Tracker} />

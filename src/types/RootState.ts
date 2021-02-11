@@ -7,7 +7,7 @@ import { EditMemberState } from 'app/containers/EditMember/types';
 import { EditExerciseState } from 'app/containers/EditExercise/types';
 import { EditResistanceState } from 'app/containers/EditResistance/types';
 import { EditWorkoutState } from 'app/containers/EditWorkout/types';
-import { HomePageState } from 'app/containers/HomePage/types';
+import { DataState } from 'app/containers/Data/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /* 
@@ -24,6 +24,6 @@ export interface RootState {
   editExercise?:EditExerciseState;
   editResistance?:EditResistanceState;
   editWorkout?:EditWorkoutState;
-  homePage?:HomePageState;
+  data?:DataState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }

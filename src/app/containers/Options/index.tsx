@@ -18,7 +18,7 @@ import { Input } from 'app/components/Input';
 import { Select } from 'app/components/Select';
 import { Option } from 'app/components/Option';
 
-import { selectHomePage } from 'app/containers/HomePage/selectors';
+import { selectData } from 'app/containers/Data/selectors';
 
 interface Props {}
 
@@ -29,21 +29,21 @@ export function Options(props: Props) {
   const [hasReps, setHasReps] = useState(false);
 
   const options = useSelector(selectOptions);
-  const homepage = useSelector(selectHomePage);
+  const dataState = useSelector(selectData);
 
   const dispatch = useDispatch();
 
   const memberSelect = e => {
-    console.log(e.target.value);
-    dispatch(optionsActions.selectMember(e.target.value));
+    console.log(dataState.members[e.target.value].name);
+    dispatch(optionsActions.selectMember(dataState.members[e.target.value].name));
   };
 
   const exerciseSelect = e => {
-    setHasReps(homepage.exercises[e.target.value].hasReps);
-    setHasResistance(homepage.exercises[e.target.value].hasResistance);
+    setHasReps(dataState.exercises[e.target.value].hasReps);
+    setHasResistance(dataState.exercises[e.target.value].hasResistance);
     dispatch(
       optionsActions.selectExercise(
-        homepage.exercises[e.target.value].exercise,
+        dataState.exercises[e.target.value].name,
       ),
     );
   };
@@ -94,20 +94,20 @@ export function Options(props: Props) {
   };
 
   useEffect(() => {
-    dispatch(optionsActions.selectMember(homepage.members[0].member));
-    dispatch(optionsActions.selectExercise(homepage.exercises[0].exercise));
-    setHasReps(homepage.exercises[0].hasReps);
-    setHasResistance(homepage.exercises[0].hasResistance);
+    dispatch(optionsActions.selectMember(dataState.members[0].member));
+    dispatch(optionsActions.selectExercise(dataState.exercises[0].exercise));
+    setHasReps(dataState.exercises[0].hasReps);
+    setHasResistance(dataState.exercises[0].hasResistance);
   }, []);
 
   return (
     <>
-      <Select name="Players" id="Player" onChange={memberSelect}>
-        <Option value={homepage.members} />
+      <Select name="Members" id="Members" onChange={memberSelect}>
+        <Option value={dataState.members} />
       </Select>
 
       <Select name="Exercises" id="Exercise" onChange={exerciseSelect}>
-        <Option value={homepage.exercises} />
+        <Option value={dataState.exercises} />
       </Select>
       <br />
       <Input
