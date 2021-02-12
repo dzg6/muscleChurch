@@ -14,7 +14,10 @@ const editExerciseSlice = createSlice({
   initialState,
   reducers: {
     createExercise(state, action: PayloadAction<any>) {
-      console.log(action.payload)
+    },
+    updateExercise(state, action: PayloadAction<any>) {
+    },
+    deleteExercise(state, action: PayloadAction<any>) {
     },
   },
 });

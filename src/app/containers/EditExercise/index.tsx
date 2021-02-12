@@ -54,7 +54,7 @@ export function EditExercise(props: Props) {
     }
   };
   const selectResistance = e => {
-    if (reps != true) {
+    if (resistance != true) {
       setResistance(true);
     } else {
       setResistance(false);
@@ -62,16 +62,14 @@ export function EditExercise(props: Props) {
   };
 
   const updateExerciseClick = payload => {
-    console.log(payload)
-    // if (payload.action === 'update') {
-    //   dispatch(editExerciseActions.updateExercise(payload));
-    // }
+    if (payload.action === 'update') {
+      dispatch(editExerciseActions.updateExercise(payload));
+    }
 
-    // if (payload.action === 'delete') {
-    //   dispatch(editExerciseActions.deleteExercise(payload));
-    // }
+    if (payload.action === 'delete') {
+      dispatch(editExerciseActions.deleteExercise(payload));
+    }
   };
-console.log(data.exercises)
   return (
     <>
       <p>Add Exercise </p>

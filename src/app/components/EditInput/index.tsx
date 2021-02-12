@@ -16,8 +16,10 @@ interface Props {
 export function EditInput(props: Props) {
   const [clickState, setClickState] = useState(0);
   const [nameInput, setNameInput] = useState(props.item.name);
-  const [hasReps, setHasReps] = useState(null);
-  const [hasResistance, setHasResistance] = useState(null);
+  const [hasReps, setHasReps] = useState(props.item.hasReps);
+  const [hasResistance, setHasResistance] = useState(props.item.hasResistance);
+
+  console.log(props.item);
 
   const editClick = e => {
     setClickState(1);
@@ -35,7 +37,7 @@ export function EditInput(props: Props) {
       name: nameInput,
       id: props.item.id,
       hasReps: hasReps,
-      hasResistance: hasResistance
+      hasResistance: hasResistance,
     };
     props.updateFunc(payload);
     setClickState(0);
@@ -43,6 +45,43 @@ export function EditInput(props: Props) {
   const onChangeMemberInput = e => {
     setNameInput(e.target.value);
   };
+  const selectReps = e => {
+    if (hasReps != true) {
+      setHasReps(true);
+    } else {
+      setHasReps(false);
+    }
+  };
+  const selectResistance = e => {
+    if (hasResistance != true) {
+      setHasResistance(true);
+    } else {
+      setHasResistance(false);
+    }
+  };
+
+  const resistanceSwitch = e => {
+    switch (hasResistance) {
+      case true:
+        return <Input type="checkbox" id="reps" onChange={selectResistance} checked />
+        break;
+      case false:
+        return  <Input type="checkbox" id="reps" onChange={selectResistance}  />
+        break;
+    }
+  };
+  const repsSwitch = e => {
+    switch (hasReps) {
+      case true:
+        return <Input type="checkbox" id="reps" onChange={selectReps} checked/>
+        break;
+      case false:
+        return <Input type="checkbox" id="reps" onChange={selectReps}/>
+        break;
+    }
+  };
+
+  
 
   const editStateSwitch = e => {
     switch (clickState) {
@@ -50,37 +89,44 @@ export function EditInput(props: Props) {
         return (
           <>
             <Button onClick={editClick}>Edit</Button>
-
           </>
         );
         break;
       case 1:
         return (
           <>
-            <Button value={"update"} onClick={updateClick}>
+            <Button value={'update'} onClick={updateClick}>
               Update
             </Button>
-              <Button onClick={cancelClick}>Cancel</Button>
-              <Button onClick={deleteClick}>Delete</Button>
+            <Button onClick={cancelClick}>Cancel</Button>
+            <Button onClick={deleteClick}>Delete</Button>
           </>
         );
         break;
-        case 2:
-          return (
-            <>
-                Delete Field?
-                <Button value="delete"  onClick={updateClick}>Yes</Button>
-                <Button onClick={cancelClick}>No</Button>
-            </>
-          );
-          break;
+      case 2:
+        return (
+          <>
+            Delete Field?
+            <Button value="delete" onClick={updateClick}>
+              Yes
+            </Button>
+            <Button onClick={cancelClick}>No</Button>
+          </>
+        );
+        break;
     }
   };
 
   const memberStateSwitch = e => {
     switch (clickState) {
       default:
-        return <>{props.item.name}</>;
+        return (
+          <>
+            {props.item.name}
+            {repsSwitch(null)}
+            {resistanceSwitch(null)}
+          </>
+        );
         break;
       case 1:
         return (
@@ -89,6 +135,8 @@ export function EditInput(props: Props) {
               onChange={onChangeMemberInput}
               placeholder={props.item.name}
             ></Input>
+            {repsSwitch(null)}
+            {resistanceSwitch(null)}
           </>
         );
         break;
@@ -115,5 +163,5 @@ const Column = styled.div`
 `;
 const Button = styled.button`
   flex: 50%;
-  margin-left:.3em;
+  margin-left: 0.3em;
 `;
