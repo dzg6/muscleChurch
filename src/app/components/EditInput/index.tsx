@@ -6,6 +6,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 
+import { Column } from 'app/components/Column';
+import { Input } from 'app/components/Input';
+
 interface Props {
   item?: any;
   exercises?: any;
@@ -18,8 +21,6 @@ export function EditInput(props: Props) {
   const [nameInput, setNameInput] = useState(props.item.name);
   const [hasReps, setHasReps] = useState(props.item.hasReps);
   const [hasResistance, setHasResistance] = useState(props.item.hasResistance);
-
-  console.log(props.item);
 
   const editClick = e => {
     setClickState(1);
@@ -63,25 +64,44 @@ export function EditInput(props: Props) {
   const resistanceSwitch = e => {
     switch (hasResistance) {
       case true:
-        return <Input type="checkbox" id="reps" onChange={selectResistance} checked />
+        return (
+          <Column isExercise flex="20%" align="center">
+            <Input
+              type="checkbox"
+              id="reps"
+              onChange={selectResistance}
+              checked
+            />
+          </Column>
+        );
         break;
       case false:
-        return  <Input type="checkbox" id="reps" onChange={selectResistance}  />
+        return (
+          <Column isExercise flex="20%" align="center">
+            <Input type="checkbox" id="reps" onChange={selectResistance} />
+          </Column>
+        );
         break;
     }
   };
   const repsSwitch = e => {
     switch (hasReps) {
       case true:
-        return <Input type="checkbox" id="reps" onChange={selectReps} checked/>
+        return (
+          <Column isExercise flex="20%" align="center">
+            <Input type="checkbox" id="reps" onChange={selectReps} checked />
+          </Column>
+        );
         break;
       case false:
-        return <Input type="checkbox" id="reps" onChange={selectReps}/>
+        return (
+          <Column isExercise flex="20%" align="center">
+            <Input type="checkbox" id="reps" onChange={selectReps} />
+          </Column>
+        );
         break;
     }
   };
-
-  
 
   const editStateSwitch = e => {
     switch (clickState) {
@@ -122,7 +142,7 @@ export function EditInput(props: Props) {
       default:
         return (
           <>
-            {props.item.name}
+            <Column flex="40%">{props.item.name}</Column>
             {repsSwitch(null)}
             {resistanceSwitch(null)}
           </>
@@ -131,10 +151,13 @@ export function EditInput(props: Props) {
       case 1:
         return (
           <>
-            <Input
-              onChange={onChangeMemberInput}
-              placeholder={props.item.name}
-            ></Input>
+            <Column flex="40%">
+              <Input
+                onChange={onChangeMemberInput}
+                placeholder={props.item.name}
+                isExercise
+              ></Input>
+            </Column>
             {repsSwitch(null)}
             {resistanceSwitch(null)}
           </>
@@ -146,22 +169,17 @@ export function EditInput(props: Props) {
   return (
     <>
       <Row>
-        <Column>{memberStateSwitch(null)}</Column>
-        <Column>{editStateSwitch(null)}</Column>
+        {memberStateSwitch(null)}
+        <Column flex="20%">{editStateSwitch(null)}</Column>
       </Row>
     </>
   );
 }
 
 const Div = styled.div``;
-const Input = styled.input``;
 const Row = styled.div`
   display: flex;
 `;
-const Column = styled.div`
-  flex: 50%;
-`;
 const Button = styled.button`
-  flex: 50%;
   margin-left: 0.3em;
 `;

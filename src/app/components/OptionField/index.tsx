@@ -12,20 +12,23 @@ interface Props {
   value?: any;
 }
 
-export function Option(props: Props) {
+export function OptionField(props: Props) {
 
 
   if (props.value) {
     return (
       <>
         {props.value.map(function (element, index) {
-          return <option value={index}>{element.name}</option>;
+          return <Option value={index}>{element.name}</Option>;
         })}
       </>
     );
   } else {
-    return <option value="empty">Empty</option>;
+    return <Option value="empty">Empty</Option>;
   }
 }
 
 const Div = styled.div``;
+const Option = styled.option`
+color:black;
+`;

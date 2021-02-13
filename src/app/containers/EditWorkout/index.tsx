@@ -29,10 +29,12 @@ const dispatch = useDispatch();
 return (
 <>
   <Div>
+    Coming Soon
     </Div>
 </>
 );
 
 };
 
-const Div = styled.div``;
+const Div = styled.div`
+text-align:center;`;

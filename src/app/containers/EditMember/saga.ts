@@ -14,11 +14,11 @@ Amplify.configure(awsconfig);
 
 export function* createMember(action) {
   try {
+    yield put(dataActions.membersLoadingChange("Yellow"));
     yield API.graphql({
       query: mutations.createMember,
       variables: { input: action.payload },
     });
-
     yield put(dataActions.getMembers());
   } catch (error) {
     console.log('error creating Member', error);
@@ -31,6 +31,7 @@ export function* updateMember(action) {
     name: action.payload.name,
   };
   try {
+    yield put(dataActions.membersLoadingChange("Yellow"));
     yield API.graphql({
       query: mutations.updateMember,
       variables: { input: updatedMember },
@@ -46,6 +47,7 @@ export function* deleteMember(action) {
     id: action.payload.id,
   };
   try {
+    yield put(dataActions.membersLoadingChange("Yellow"));
     yield API.graphql({
       query: mutations.deleteMember,
       variables: { input: deleteMember },

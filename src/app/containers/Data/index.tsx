@@ -19,13 +19,16 @@ export function Data(props: Props) {
   useInjectSaga({ key: sliceKey, saga: dataSaga });
 
   const [exercises, setExercises] = useState('');
-  const [exercisesLight, setExercisesLight] = useState('Red Light');
+
 
   const [members, setMembers] = useState([]);
-  const [membersLight, setMembersLight] = useState('Red Light');
+
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const dataState = useSelector(selectData);
+  const [membersLight, setMembersLight] = useState(dataState.membersLoading);
+  const [exercisesLight, setExercisesLight] = useState(dataState.exercisesLoading);
+  const [workoutLight, setWorkoutLight] = useState(dataState.workoutLoading);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const dispatch = useDispatch();
 
@@ -47,33 +50,36 @@ export function Data(props: Props) {
     }
   });
 
+  //Watcher on dataState changes for lights
   useEffect(() => {
-    {
-      typeof members[0] === 'object' && members[0] !== null
-        ? setMembersLight('Green Light')
-        : console.log('red light');
-    }
-  });
+    setMembersLight(dataState.membersLoading)
+  }, [dataState.membersLoading]);
   useEffect(() => {
-    {
-      typeof exercises[0] === 'object' && exercises[0] !== null
-        ? setExercisesLight('Green Light')
-        : console.log('red light');
-    }
-  });
+    setExercisesLight(dataState.exercisesLoading)
+  }, [dataState.exercisesLoading]);
+  useEffect(() => {
+    setWorkoutLight(dataState.workoutLoading)
+  }, [dataState.workoutLoading]);
 
   return (
     <>
       <Div>
-        Loading Data:
-        {membersLight === 'Green Light'?<Green />: <Red />}
-        {exercisesLight === 'Green Light'?<Green />: <Red />}
+        {membersLight === 'Green'?<Green /> :''}
+        {membersLight === 'Red'?<Red /> :''}
+        {membersLight === 'Yellow'?<Yellow /> :''}
+        {exercisesLight === 'Green'?<Green /> :''}
+        {exercisesLight === 'Red'?<Red /> :''}
+        {exercisesLight === 'Yellow'?<Yellow /> :''}
+        {workoutLight === 'Green'?<Green /> :''}
+        {workoutLight === 'Grey'?<Grey /> :''}
+        {workoutLight === 'Yellow'?<Yellow /> :''}
       </Div>
     </>
   );
 }
 
-const Div = styled.div``;
+const Div = styled.div`
+text-align:center;`;
 const Green = styled.svg`
 width: 10px;
 height: 10px;
@@ -88,5 +94,10 @@ const Yellow = styled.svg`
 width: 10px;
 height: 10px;
 background: yellow;
+border-radius: 50%`;
+const Grey = styled.svg`
+width: 10px;
+height: 10px;
+background: grey;
 border-radius: 50%`;
 

@@ -16,13 +16,14 @@ import { selectOptions } from './selectors';
 import { Button } from 'app/components/Button';
 import { Input } from 'app/components/Input';
 import { Select } from 'app/components/Select';
-import { Option } from 'app/components/Option';
+import { OptionField } from 'app/components/OptionField';
 
 import { selectData } from 'app/containers/Data/selectors';
 
 interface Props {}
 
 export function Options(props: Props) {
+
   useInjectReducer({ key: sliceKey, reducer: reducer });
   const [weight, setWeight] = useState('');
   const [hasResistance, setHasResistance] = useState(false);
@@ -67,11 +68,14 @@ export function Options(props: Props) {
             name="resistance band"
             onChange={resistanceSelect}
           >
-            <option value="Black L2">Black L2</option>
-            <option value="Black L1">Black L1</option>
-            <option value="Orange">Orange</option>
-            <option value="Green">Green</option>
-            <option value="Purple">Purple</option>
+                  <Option value="none" selected disabled hidden> 
+          Select an Option 
+      </Option>
+            <Option value="Black L2">Black L2</Option>
+            <Option value="Black L1">Black L1</Option>
+            <Option value="Orange">Orange</Option>
+            <Option value="Green">Green</Option>
+            <Option value="Purple">Purple</Option>
           </Select>
         </>
       );
@@ -93,21 +97,26 @@ export function Options(props: Props) {
     }
   };
 
+
   useEffect(() => {
-    dispatch(optionsActions.selectMember(dataState.members[0].member));
-    dispatch(optionsActions.selectExercise(dataState.exercises[0].exercise));
-    setHasReps(dataState.exercises[0].hasReps);
-    setHasResistance(dataState.exercises[0].hasResistance);
+  
   }, []);
+
 
   return (
     <>
       <Select name="Members" id="Members" onChange={memberSelect}>
-        <Option value={dataState.members} />
+      <Option value="none" selected disabled hidden> 
+          Select an Option 
+      </Option>
+        <OptionField value={dataState.members} />
       </Select>
 
       <Select name="Exercises" id="Exercise" onChange={exerciseSelect}>
-        <Option value={dataState.exercises} />
+      <Option value="none" selected disabled hidden> 
+          Select an Option 
+      </Option>
+        <OptionField value={dataState.exercises} />
       </Select>
       <br />
       <Input
@@ -126,4 +135,7 @@ export function Options(props: Props) {
 
 const Div = styled.div`
   text-align: center;
+`;
+const Option = styled.option`
+color:black;
 `;

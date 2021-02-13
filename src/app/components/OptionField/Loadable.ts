@@ -6,4 +6,4 @@
 
 import { lazyLoad } from 'utils/loadable';
 
-export const Option = lazyLoad(() => import('./index'), module => module.Option);
+export const OptionField = lazyLoad(() => import('./index'), module => module.OptionField);

@@ -13,8 +13,10 @@ import { reducer, sliceKey, editExerciseActions } from './slice';
 import { selectEditExercise } from './selectors';
 import { editExerciseSaga } from './saga';
 
-import { Input } from 'app/components/Input';
+// import { Input } from 'app/components/Input';
 import { EditItem } from 'app/components/EditItem';
+import { Column } from 'app/components/Column';
+import { Input } from 'app/components/Input';
 
 import { selectData } from 'app/containers/Data/selectors';
 
@@ -27,7 +29,6 @@ export function EditExercise(props: Props) {
   const [resistance, setResistance] = useState(false);
   const [reps, setReps] = useState(false);
   const [type, setType] = useState('exercise');
-
 
   const editExercise = useSelector(selectEditExercise);
   const data = useSelector(selectData);
@@ -72,25 +73,38 @@ export function EditExercise(props: Props) {
   };
   return (
     <>
-      <p>Add Exercise </p>
       <Div>
         <Row>
-          <Column>
+          <Column flex="40%">Exercise</Column>
+          <Column align="center" flex="20%">Has Resistance</Column>
+          <Column align="center" flex="20%">Has Reps</Column>
+          <Column flex="20%"></Column>
+        </Row>
+        <Row>
+          <Column flex="40%">
             <Input
               id="create Exercise"
               name="create Exercise"
               onChange={selectExercise}
               value={exercise}
               placeholder=""
+              isExercise
             />
           </Column>
-          <Input type="checkbox" id="resistance" onChange={selectResistance} />
-          <Input type="checkbox" id="reps" onChange={selectReps} />
-          <Column>
+          <Column isExercise flex="20%" align="center">
+            <Input
+              type="checkbox"
+              id="resistance"
+              onChange={selectResistance}
+            />
+          </Column>
+          <Column isExercise flex="20%" align="center">
+            <Input type="checkbox" id="reps" onChange={selectReps} />
+          </Column >
+          <Column isExercise flex="20%">
             <Button onClick={createExercise}>Add Exercise</Button>
           </Column>
         </Row>
-        <p>Edit Exercise</p>
         <EditItem items={data.exercises} updateFunc={updateExerciseClick} />
       </Div>
     </>
@@ -101,11 +115,10 @@ const Div = styled.div``;
 const Row = styled.div`
   display: flex;
 `;
-const Column = styled.div`
-  flex: 50%;
-`;
+
 const Button = styled.button`
-  flex: 50%;
+  flex: 25%;
   margin-left: 0.3em;
 `;
+
 

@@ -4,6 +4,7 @@ import { selectOptions } from '../Options/selectors';
 import { selectStopWatch } from '../StopWatch/selectors';
 import { selectTracker } from './selectors';
 import { trackerActions } from './slice';
+import { dataActions } from 'app/containers/Data/slice';
 
 
 
@@ -38,26 +39,13 @@ export function* createWorkout() {
 
   console.log(tempWorkPut)
 
-  // const newTodo = await API.graphql({
-  //   query: mutations.createWorkout,
-  //    variables: {input: tempWorkPut}});
-
 
   try {
-
-    // yield DataStore.save(
-    //   new Workout({
-    //     date: new Date().toLocaleString().split(',')[0],
-    //     player: settings.player,
-    //     exercise: settings.exercise,
-    //     weight: settings.weight,
-    //     resistance: settings.resistanceBand.toString(),
-    //     time: time.time.toString(),
-    //   }),
-    // );
+    yield put(dataActions.workoutLoadingChange("Yellow"));
     yield API.graphql({
       query: mutations.createWorkout,
        variables: {input: tempWorkPut}});
+    yield put(dataActions.workoutLoadingChange("Grey"));
 
   } catch (error) {
     console.log('error saving post', error);

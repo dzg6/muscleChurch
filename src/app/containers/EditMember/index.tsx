@@ -14,6 +14,7 @@ import { selectEditMember } from './selectors';
 import { editMemberSaga } from './saga';
 
 import { Input } from 'app/components/Input';
+import { Column } from 'app/components/Column';
 import { EditItem } from 'app/components/EditItem';
 
 import { selectData } from 'app/containers/Data/selectors';
@@ -55,20 +56,24 @@ export function EditMember(props: Props) {
     <>
       <Div>
         <Row>
-          <Column>
+          <Column flex="50%">Members</Column>
+          <Column flex="50%"></Column>
+        </Row>
+        <Row>
+          <Column flex="50%">
             <Input
               id="create member"
               name="create member"
               value={addMember}
               onChange={selectMember}
               placeholder=""
+              isExercise
             />
           </Column>
-          <Column>
+          <Column flex="50%">
             <Button onClick={createMember}>Create New Member</Button>
           </Column>
         </Row>
-        <p>Edit Members</p>
         <EditItem items={data.members} updateFunc={updateMemberClick} />
       </Div>
     </>
@@ -77,9 +82,6 @@ export function EditMember(props: Props) {
 const Div = styled.div``;
 const Row = styled.div`
   display: flex;
-`;
-const Column = styled.div`
-  flex: 50%;
 `;
 const Button = styled.button`
   flex: 50%;

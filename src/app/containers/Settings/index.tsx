@@ -47,41 +47,47 @@ export function Settings(props: Props) {
       case 0:
         return (
           <>
-            <Link to="/">Go back to HomePage</Link>
-            <br />
-            <Link onClick={onClickMember}>Edit Members</Link>
-            <br />
-            <Link onClick={onClickExercise}>Edit Exercises</Link>
-            <br />
-            <Link onClick={onClickWorkout}>Edit Workouts</Link>
-            <br />
+            <BackLink back to="/">
+              Back
+            </BackLink>
+            <Div>
+              <Link onClick={onClickMember}>Edit Members</Link>
+              <br />
+              <Link onClick={onClickExercise}>Edit Exercises</Link>
+              <br />
+              <Link onClick={onClickWorkout}>Edit Workouts</Link>
+              <br />
+            </Div>
           </>
         );
         break;
       case 1:
         return (
           <>
-            <Link onClick={onClickBack}>Back</Link>
-            <br />
+            <BackLink onClick={onClickBack}>Back</BackLink>
+            <Div>
             <EditMember />
+            </Div>
           </>
         );
         break;
       case 2:
         return (
           <>
-            <Link onClick={onClickBack}>Back</Link>
-            <br />
+            <BackLink onClick={onClickBack}>Back</BackLink>
+            <Div>
             <EditExercise />
+            </Div>
           </>
         );
         break;
       case 3:
         return (
           <>
-            <Link onClick={onClickBack}>Back</Link>
-            <br />
+            <BackLink onClick={onClickBack}>Back</BackLink>
+            <Div>
             <EditWorkout />
+            </Div>
           </>
         );
         break;
@@ -90,9 +96,15 @@ export function Settings(props: Props) {
 
   return (
     <>
-      <Div>{clickStateSwitch()}</Div>
+      {clickStateSwitch()}
     </>
   );
 }
 
-const Div = styled.div``;
+const Div = styled.div`
+text-align:center;
+`;
+const BackLink = styled(Link)`
+  color: #ff8686;
+  text-align: left;
+`;
