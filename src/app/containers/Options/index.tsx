@@ -16,7 +16,7 @@ import { selectOptions } from './selectors';
 import { Button } from 'app/components/Button';
 import { Input } from 'app/components/Input';
 import { Select } from 'app/components/Select';
-import { OptionField } from 'app/components/OptionField';
+import { OptionField, Option } from 'app/components/OptionField';
 
 import { selectData } from 'app/containers/Data/selectors';
 
@@ -135,7 +135,4 @@ export function Options(props: Props) {
 
 const Div = styled.div`
   text-align: center;
-`;
-const Option = styled.option`
-color:black;
 `;

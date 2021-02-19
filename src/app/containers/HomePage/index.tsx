@@ -30,7 +30,7 @@ export function HomePage() {
       {/* <Data /> */}
       <Div>
         <Link to="/Tracker">Tracker </Link>
-
+        <Link to="/Stats">Stats </Link>
         <Link to="/Settings">Settings </Link>
       </Div>
     </>

@@ -8,6 +8,7 @@ import { EditExerciseState } from 'app/containers/EditExercise/types';
 import { EditResistanceState } from 'app/containers/EditResistance/types';
 import { EditWorkoutState } from 'app/containers/EditWorkout/types';
 import { DataState } from 'app/containers/Data/types';
+import { StatsState } from 'app/containers/Stats/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /* 
@@ -16,6 +17,7 @@ import { DataState } from 'app/containers/Data/types';
 */
 export interface RootState {
   tracker?: TrackerState;
+  stats?: StatsState
   settings?: SettingsState;
   stopWatch?: StopWatchState;
   options?:OptionsState;

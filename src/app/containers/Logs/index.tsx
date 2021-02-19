@@ -28,7 +28,7 @@ export function Logs(props: Props) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const dispatch = useDispatch();
 
-  const stopTimer = e => {
+  const getLogs = e => {
     dispatch(logsActions.fetchLogs());
   };
 
@@ -39,14 +39,10 @@ export function Logs(props: Props) {
         <meta name="description" content="Description of Logs" />
       </Helmet>
       <Div>
-        <Button stop value="stop" onClick={stopTimer}>
-          Logs
+        <Button stop value="stop" onClick={getLogs}>
+          Get Workouts
         </Button>
         <LogViewer test={logs.test} />
-
-        {/* {logs.test.map((user, i) => (
-          <LogViewer test={user} />
-        ))} */}
       </Div>
     </>
   );

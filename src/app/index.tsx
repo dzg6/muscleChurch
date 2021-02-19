@@ -17,6 +17,7 @@ import { Header } from 'app/containers/Header/Loadable';
 import { Data } from './containers/Data/Loadable';
 import { HomePage } from './containers/HomePage/Loadable';
 import { Tracker } from './containers/Tracker/Loadable';
+import { Stats } from './containers/Stats/Loadable';
 import { Settings } from './containers/Settings/Loadable';
 import { NotFoundPage } from './components/NotFoundPage/Loadable';
 import { useTranslation } from 'react-i18next';
@@ -40,6 +41,7 @@ export function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/Tracker" component={Tracker} />
+        <Route exact path="/Stats" component={Stats} />
         <Route exact path="/Settings" component={Settings} />
         <Route component={NotFoundPage} />
       </Switch>

@@ -28,7 +28,6 @@ export function OptionField(props: Props) {
   }
 }
 
-const Div = styled.div``;
-const Option = styled.option`
+export const Option = styled.option`
 color:black;
 `;

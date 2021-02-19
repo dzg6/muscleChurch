@@ -10,10 +10,13 @@ interface Props {
   test?: Array<stats>;
 }
 interface stats {
-  player?: string;
+  member?: string;
   time?: string;
   date?: string;
   exercise?: string;
+  weight?: string;
+  reps?: string;
+  resistance?: string;
 }
 
 export function LogViewer(props: Props) {
@@ -22,7 +25,19 @@ export function LogViewer(props: Props) {
     return (
       <Div>
         {props.test.map((user, i) => (
-          <p>{user.player + ' ' + user.time +' ' + user.exercise + ' '+ user.date}</p>
+          <p>
+            {user.member +
+              ' ' +
+              user.time +
+              ' ' +
+              user.exercise +
+              ' ' +
+              user.weight +
+              ' ' +
+              user.reps +
+              ' ' +
+              user.resistance}
+          </p>
         ))}
       </Div>
     );
